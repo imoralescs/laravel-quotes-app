@@ -11,15 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-
-    $title = 'Hello Laravel from Docker';
-    $user = 'Israel Morales';
-    return view('welcome', [
-        'title' => $title,
-        'user' => $user
-    ]);
-});
+Route::get('/', [
+    'uses' => 'HomeController@index',
+    'as' => 'indexHome'
+]);
 
 Route::get('/home', function () {
 
@@ -33,3 +28,18 @@ Route::get('/home', function () {
         'users' => $users
     ]);
 });
+
+Route::get('/quote', [
+    'uses' => 'QuoteController@index',
+    'as' => 'indexQuote'
+]);
+
+Route::get('/quote/create',[
+    'uses' => 'QuoteController@createIndex',
+    'as' => 'createQuoteIndex'
+]);
+
+Route::post('/quote/create',[
+    'uses' => 'QuoteController@createPost',
+    'as' => 'createQuotePost'
+]);
